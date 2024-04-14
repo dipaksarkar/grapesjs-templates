@@ -1,9 +1,5 @@
-export default (editor, opts = {}) => {
-  const bm = editor.BlockManager;
+import { loadNavbarBlock } from './navbar'
 
-  bm.add('MY-BLOCK', {
-    label: 'My block',
-    content: { type: 'MY-COMPONENT' },
-    // media: '<svg>...</svg>',
-  });
+export default (editor, opts = {}) => {
+  loadNavbarBlock(editor, opts)
 }
