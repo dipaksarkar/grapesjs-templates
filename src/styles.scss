@@ -1,0 +1,38 @@
+/* Class names prefixes */
+$prefix: 'gjs-' !default;
+
+#popper-container {
+    display: none;
+}
+
+#popper-container[data-show="true"] {
+    display: block;
+    z-index: 9999;
+}
+
+.#{$prefix}dropdown-menu {
+    list-style: none;
+    border-radius: 5px;
+    color: rgb(200, 200, 200);
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    font-family: var(--gjs-main-font);
+    box-shadow: 0 0 5px var(--gjs-main-dark-color);
+    background-color: var(--gjs-primary-color);
+    > *:not(:last-child) {
+        border-bottom: 1px solid grey;
+    }
+    .#{$prefix}menu-item {
+        list-style: none;
+        padding: 8px 20px;
+        cursor: pointer;
+        &:hover {
+            background-color: rgb(40, 40, 40);
+        }
+    }
+    .#{$prefix}menu-label {
+        font-size: .85rem;
+        margin-left: 5px;
+    }
+}

@@ -1,6 +1,7 @@
 .DS_Store
 private/
 /locale
+/public
 node_modules/
 *.log
 _index.html

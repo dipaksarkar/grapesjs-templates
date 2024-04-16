@@ -1,10 +1,24 @@
 import domtoimage from 'dom-to-image'
+import { createPopper } from '@popperjs/core'
 import loadComponents from './components'
 import loadCommands from './commands'
 import loadBlocks from './blocks'
 import en from './locale/en'
 
-export const generateThumbnail = (el, options = {}) => {
+const dataDropdown = `
+  <ul class="gjs-dropdown-menu">
+    <li data-command="save-templates" class="gjs-menu-item">
+      <i class="fa fa-save"></i>
+      <span class="gjs-menu-label">Save template</span>
+    </li>
+    <li data-command="open-templates" class="gjs-menu-item">
+      <i class="fa fa-folder-o"></i>
+      <span class="gjs-menu-label">Load templates</span>
+    </li>
+  </ul>
+`
+
+export const makeThumbnail = (el, options = {}) => {
   return new Promise(async (resolve, reject) => {
     try {
       const dataUrl = await domtoimage.toJpeg(el, options)
@@ -24,12 +38,14 @@ export default (editor, opts = {}) => {
     ...opts
   }
 
-  editor.domtoimage = domtoimage
+  editor.makeThumbnail = makeThumbnail
 
   // Add components
   loadComponents(editor, options)
+
   // Add commands
   loadCommands(editor, options)
+
   // Add blocks
   loadBlocks(editor, options)
   // Load i18n files
@@ -39,26 +55,71 @@ export default (editor, opts = {}) => {
       ...options.i18n
     })
 
-  const { Panels } = editor
+  const { Panels, $ } = editor
 
   Panels.addButton('options', {
     id: 'open-templates',
-    className: 'fa fa-folder-o',
+    className: 'dropdown fa fa-cog',
     attributes: {
-      title: 'Open Templates'
+      title: 'Template settings',
+      'data-dropdown': dataDropdown,
+      'data-offset': '-55,7'
     },
-    command: 'open-templates',
     togglable: false
   })
 
-  Panels.addButton('options', {
-    id: 'open-pages',
-    label:
-      '<svg style="width: 18px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M168 80c-13.3 0-24 10.7-24 24V408c0 8.4-1.4 16.5-4.1 24H440c13.3 0 24-10.7 24-24V104c0-13.3-10.7-24-24-24H168zM72 480c-39.8 0-72-32.2-72-72V112C0 98.7 10.7 88 24 88s24 10.7 24 24V408c0 13.3 10.7 24 24 24s24-10.7 24-24V104c0-39.8 32.2-72 72-72H440c39.8 0 72 32.2 72 72V408c0 39.8-32.2 72-72 72H72zM176 136c0-13.3 10.7-24 24-24h96c13.3 0 24 10.7 24 24v80c0 13.3-10.7 24-24 24H200c-13.3 0-24-10.7-24-24V136zm200-24h32c13.3 0 24 10.7 24 24s-10.7 24-24 24H376c-13.3 0-24-10.7-24-24s10.7-24 24-24zm0 80h32c13.3 0 24 10.7 24 24s-10.7 24-24 24H376c-13.3 0-24-10.7-24-24s10.7-24 24-24zM200 272H408c13.3 0 24 10.7 24 24s-10.7 24-24 24H200c-13.3 0-24-10.7-24-24s10.7-24 24-24zm0 80H408c13.3 0 24 10.7 24 24s-10.7 24-24 24H200c-13.3 0-24-10.7-24-24s10.7-24 24-24z"/></svg>',
-    attributes: {
-      title: 'Open Pages'
-    },
-    command: 'open-pages',
-    togglable: false
+  // Append the dropdown menu to the document body
+  const dropdownContainer = document.createElement('div')
+  dropdownContainer.setAttribute('id', 'popper-container')
+  document.body.appendChild(dropdownContainer)
+
+  $(document).ready(() => {
+    let active = false
+    const container = $('#popper-container')
+
+    $('.dropdown').click(function ({ target }) {
+      const dropdown = $(this).attr('data-dropdown')
+      const elOffset = $(this).attr('data-offset')
+      let offset = [0, 0]
+
+      if (elOffset) {
+        offset = elOffset.split(',').map((item) => parseFloat(item))
+      }
+      container.html(dropdown)
+      const popperInstance = createPopper(target, container[0], {
+        modifiers: [
+          {
+            name: 'offset',
+            options: {
+              offset: offset
+            }
+          }
+        ]
+      })
+
+      active = !active
+      container.attr('data-show', active)
+
+      // We need to tell Popper to update the container position
+      // after we show the container, otherwise it will be incorrect
+      popperInstance.update()
+    })
+
+    container.on('click', '.gjs-menu-item', function () {
+      const command = $(this).attr('data-command')
+      active = false
+      container.attr('data-show', active)
+      if (command) {
+        editor.runCommand(command)
+      }
+    })
+
+    // Event listener to hide dropdown when clicking outside of it
+    $(document).on('click', function (event) {
+      if (!$(event.target).closest('.dropdown').length && !$(event.target).closest('#popper-container').length) {
+        active = false
+        container.attr('data-show', active)
+      }
+    })
   })
 }
