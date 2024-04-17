@@ -10,7 +10,7 @@ $prefix: 'gjs-' !default;
     z-index: 9999;
 }
 
-.gjs-text-subtitle2 {
+.#{$prefix}text-subtitle2 {
     font-size: 0.875rem;
     font-weight: 500;
     line-height: 1.375rem;
@@ -138,14 +138,14 @@ $prefix: 'gjs-' !default;
 
 
 /* Grid styles */
-.gjs-row  {
+.#{$prefix}row  {
     display: flex;
     flex-wrap: wrap;
     margin-left: -10px;
     margin-top: -10px;
 }
 
-.gjs-xs-12 {
+.#{$prefix}xs-12 {
     flex: 0 0 100%;
     max-width: 100%;
     padding-left: 10px;
@@ -154,7 +154,7 @@ $prefix: 'gjs-' !default;
 
 /* Small devices (landscape phones, 600px and up) */
 @media (min-width: 600px) {
-    .gjs-sm-4 {
+    .#{$prefix}sm-4 {
         flex: 0 0 calc(33.333% - 10px); /* 4 columns with gutter */
         max-width: calc(33.333% - 10px);
         padding-left: 10px;
