@@ -6,4 +6,4 @@
 node_modules
 public
 src
-!src/styles.scss
+!src/styles/main.scss

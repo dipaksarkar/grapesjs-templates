@@ -4,6 +4,7 @@ import loadComponents from './components'
 import loadCommands from './commands'
 import loadBlocks from './blocks'
 import en from './locale/en'
+import './styles/main.scss'
 
 const dataDropdown = `
   <ul class="gjs-dropdown-menu">
