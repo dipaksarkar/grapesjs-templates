@@ -4,6 +4,8 @@ import loadComponents from './components'
 import loadCommands from './commands'
 import loadBlocks from './blocks'
 import en from './locale/en'
+import templates from './templates'
+
 import './styles/main.scss'
 
 const dataDropdown = `
@@ -39,6 +41,7 @@ export default (editor, opts = {}) => {
     ...opts
   }
 
+  editor.templates = templates
   editor.makeThumbnail = makeThumbnail
 
   // Add components
