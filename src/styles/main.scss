@@ -10,7 +10,7 @@ $prefix: 'gjs-' !default;
     z-index: 9999;
 }
 
-.text-subtitle2 {
+.gjs-text-subtitle2 {
     font-size: 0.875rem;
     font-weight: 500;
     line-height: 1.375rem;
@@ -84,8 +84,7 @@ $prefix: 'gjs-' !default;
 /* Style for tab panels */
 .#{$prefix}tab-panels {
     margin: 10px 0px;
-    margin-right: -10px;
-    overflow-y: scroll;
+    overflow-y: auto;
     height: 350px;
 }
 
@@ -139,23 +138,23 @@ $prefix: 'gjs-' !default;
 
 
 /* Grid styles */
-.row {
+.gjs-row  {
     display: flex;
     flex-wrap: wrap;
     margin-left: -10px;
     margin-top: -10px;
 }
 
-.col-xs-12 {
+.gjs-xs-12 {
     flex: 0 0 100%;
     max-width: 100%;
     padding-left: 10px;
     padding-top: 10px;
 }
 
-/* Small devices (landscape phones, 576px and up) */
-@media (min-width: 576px) {
-    .col-sm-4 {
+/* Small devices (landscape phones, 600px and up) */
+@media (min-width: 600px) {
+    .gjs-sm-4 {
         flex: 0 0 calc(33.333% - 10px); /* 4 columns with gutter */
         max-width: calc(33.333% - 10px);
         padding-left: 10px;

@@ -39,14 +39,14 @@ export default (editor, options = {}) => {
 
     const list = templates.map(
       (item) => `
-        <div class="col-xs-12 col-sm-4">
+        <div class="gjs-xs-12 gjs-sm-4">
           <div class="template-card">
             <div class="gjs-img gjs-img--menu" role="img">
               <img src="${item.thumbnail}">
             </div>
             <hr class="gjs-separator gjs-separator--horizontal" aria-orientation="horizontal">
             <div class="gjs-card__section gjs-card__section--vert">
-              <div class="text-subtitle2">${item.name}</div>
+              <div class="gjs-text-subtitle2">${item.name}</div>
             </div>
             <div class="controller">
               <button data-type="templates" data-template="${item.id}">Select</button>
@@ -55,7 +55,7 @@ export default (editor, options = {}) => {
         </div>
       `
     )
-    const html = `<div class="templates row gjs-col-gutter-md">${list.join('')}</div>`
+    const html = `<div class="templates gjs-row gjs-col-gutter-md">${list.join('')}</div>`
     $el.find(id).html(templates.length ? html : noItems)
   }
 
