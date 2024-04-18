@@ -9,6 +9,7 @@
   },
   "scripts": {
     "start": "grapesjs-cli serve",
+    "start:server": "yarn --cwd server start",
     "build": "grapesjs-cli build",
     "bump": "npm version patch -m 'Bump v%s'"
   },

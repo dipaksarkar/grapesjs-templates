@@ -13,9 +13,11 @@ export const makeThumbnail = (el, options = {}) => {
   return new Promise(async (resolve, reject) => {
     try {
       const dataUrl = await domtoimage.toJpeg(el, options)
+      console.log(dataUrl)
       resolve(dataUrl)
     } catch (error) {
-      reject(error)
+      console.error(error)
+      resolve(null)
     }
   })
 }
@@ -23,8 +25,9 @@ export const makeThumbnail = (el, options = {}) => {
 export default (editor, opts = {}) => {
   const options = {
     ...{
-      i18n: {}
-      // default options
+      i18n: {},
+      templates: null,
+      projects: null
     },
     ...opts
   }

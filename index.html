@@ -36,16 +36,14 @@
         storageManager: false,
         plugins: ['grapesjs-pages'],
         pluginsOpts: {
-          'grapesjs-pages': { /* Test here your options  */ }
+          'grapesjs-pages': {
+            //templates: 'http://localhost:3000/templates',
+            //projects: 'http://localhost:3000/projects',
+            //onLoad: (type) => {
+            //  return []
+            //}
+          }
         }
-      });
-
-      window.editor.on('templates:save', (args) => {
-        console.log('templates save', args);
-      });
-
-      window.editor.on('templates:open', (args) => {
-        console.log('templates open', args);
       });
     }, 100);
   </script>

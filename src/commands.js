@@ -1,61 +1,41 @@
+import { modalContent, noItems, loader, mapTemplates, fetchTemplates, storeProjects, removeProjects, PROJECTS, TEMPLATES } from './utils'
+
 const el = document.createElement('div')
-const modalContent = `
-  <div class="manage-templates">
-    <div class="gjs-px-md">
-      <div class="gjs-tabs" role="tablist">
-        <div class="gjs-tab" data-tab="projects" role="tab" aria-selected="false">
-          <div class="gjs-tab__label">My projects</div>
-          <div class="gjs-tab__indicator absolute-bottom"></div>
-        </div>
-        <div class="gjs-tab" data-tab="templates" role="tab" aria-selected="true">
-          <div class="gjs-tab__label">Templates</div>
-          <div class="gjs-tab__indicator absolute-bottom"></div>
-        </div>
-      </div>
-      <hr class="gjs-separator gjs-separator--horizontal gjs-separator--dark" aria-orientation="horizontal">
-    </div>
-    <div class="gjs-tab-panels">
-      <div id="templates" aria-selected="true" class="gjs-tab-panel" role="tabpanel"></div>
-      <div id="projects" aria-selected="false" class="gjs-tab-panel" role="tabpanel"></div>
-    </div>
-  </div>
-`
-const noItems = `
-  <div class="gjs-no-project">
-    <i class="fa fa-newspaper-o"></i>
-    <div class="gjs-message">
-      No projects found. Projects will appear here once you add them.
-    </div>
-  </div>
-`
 
 export default (editor, options = {}) => {
   const { Commands, Modal, $ } = editor
   const $el = $(el)
+  editor.tab = TEMPLATES
 
-  const renderList = (type = 'templates') => {
+  const updateBtnEvent = () => {
+    $el.find('.gjs-template-card .select').on('click', function () {
+      const type = $(this).attr('data-type')
+      const id = $(this).attr('data-template')
+      const template = findTemplate(id, type)
+
+      if (template?.data) editor.loadProjectData(template.data)
+
+      Modal.close()
+    })
+
+    $el.find('.gjs-template-card .remove').on('click', function () {
+      const id = $(this).attr('data-template')
+      $(this).attr('disabled', true)
+      removeProjects(id).then(() => {
+        renderList(editor.tab)
+      })
+    })
+  }
+
+  const renderList = async (type = TEMPLATES) => {
     const id = `#${type}`
-    const templates = editor[type] || []
+    $el.find(id).html(loader)
 
-    const list = templates.map(
-      (item) => `
-        <div class="gjs-xs-12 gjs-sm-4">
-          <div class="template-card">
-            <div class="gjs-img gjs-img--menu" role="img">
-              <img src="${item.thumbnail}">
-            </div>
-            <hr class="gjs-separator gjs-separator--horizontal" aria-orientation="horizontal">
-            <div class="gjs-card__section gjs-card__section--vert">
-              <div class="gjs-text-subtitle2">${item.name}</div>
-            </div>
-            <div class="controller">
-              <button data-type="templates" data-template="${item.id}">Select</button>
-            </div>
-          </div>
-        </div>
-      `
-    )
-    const html = `<div class="templates gjs-row gjs-col-gutter-md">${list.join('')}</div>`
+    const templates = (await fetchTemplates(type, options)) || editor[type] || []
+
+    editor[type] = templates
+
+    const html = mapTemplates(templates, type == PROJECTS)
     $el.find(id).html(templates.length ? html : noItems)
   }
 
@@ -68,20 +48,20 @@ export default (editor, options = {}) => {
   }
 
   Commands.add('open-templates', {
-    run(editor, sender) {
+    async run(editor, sender) {
       Modal.setTitle('Templates')
       Modal.setContent(el)
       Modal.open()
 
       $el.html(modalContent)
 
-      renderList()
+      await renderList()
 
       const tabPanel = $el.find('.gjs-tab')
-      const actionBtn = $el.find('.template-card button')
 
-      tabPanel.on('click', function () {
+      tabPanel.on('click', async function () {
         const tab = $(this).attr('data-tab')
+        editor.tab = tab
 
         // switch active tab
         $el.find('.gjs-tab').attr('aria-selected', false)
@@ -89,26 +69,34 @@ export default (editor, options = {}) => {
         $el.find('.gjs-tab')
 
         // switch active tab-panel
-        renderList(tab)
+        await renderList(tab)
+
         $el.find('.gjs-tab-panel').attr('aria-selected', false)
         $el.find(`#${tab}`).attr('aria-selected', true)
+
+        updateBtnEvent()
       })
 
-      actionBtn.on('click', function () {
-        const type = $(this).attr('data-type')
-        const id = $(this).attr('data-template')
-        const template = findTemplate(id, type)
-        if (template?.data) {
-          editor.loadProjectData(template.data)
-        }
-        Modal.close()
-      })
+      updateBtnEvent()
     }
   })
 
   Commands.add('save-templates', {
-    run(editor) {
-      editor.trigger('templates:save', options)
+    async run(editor) {
+      const name = prompt('Enter template name:')
+      if (name) {
+        const data = editor.getProjectData()
+        const thumbnail = await editor.makeThumbnail(editor.getWrapper().getEl(), {
+          quality: 0.95,
+          height: 208,
+          cacheBust: true,
+          style: {
+            'background-color': 'white',
+            ...editor.getWrapper().getStyle()
+          }
+        })
+        return storeProjects({ id: Date.now(), data, name, thumbnail })
+      }
     }
   })
 }

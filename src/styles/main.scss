@@ -47,6 +47,8 @@ $prefix: 'gjs-' !default;
 /* Style for tabs */
 .#{$prefix}card__section {
     padding: 10px;
+    display: flex;
+    justify-content: space-between;
 }
 
 .#{$prefix}tabs {
@@ -97,17 +99,17 @@ $prefix: 'gjs-' !default;
 }
 
 /* Additional styling */
-.template-card {
+.#{$prefix}template-card {
     border: 1px solid var(--gjs-main-dark-color);
     border-radius: 5px;
     position: relative;
     overflow: hidden;
 
-    &:hover .controller {
+    &:hover .#{$prefix}controller {
         opacity: 1;
     }
 
-    .controller {
+    .#{$prefix}controller {
         position: absolute;
         top: 0;
         bottom: 0;
@@ -118,7 +120,7 @@ $prefix: 'gjs-' !default;
         background-color: rgba(44, 44, 44, 0.343);
     }
     
-    .controller button {
+    .#{$prefix}controller button {
         background-color: #007bff;
         color: #fff;
         border: none;
@@ -131,7 +133,7 @@ $prefix: 'gjs-' !default;
         transform: translate(-50%, -50%);
     }
     
-    .controller button:hover {
+    .#{$prefix}controller button:hover {
         background-color: #0056b3;
     }
 }
@@ -187,5 +189,13 @@ $prefix: 'gjs-' !default;
         opacity: 0.3;
         color: var(--gjs-quaternary-color);
     }
+}
+
+.#{$prefix}btn-delete{
+  background-color: transparent;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  padding: 0;
 }
 
