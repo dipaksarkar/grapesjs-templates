@@ -1,6 +1,6 @@
 {
   "name": "grapesjs-pages",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "description": "Grapesjs Pages",
   "main": "dist/index.js",
   "repository": {
