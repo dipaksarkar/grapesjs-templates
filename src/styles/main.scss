@@ -2,200 +2,199 @@
 $prefix: 'gjs-' !default;
 
 #popper-container {
-    display: none;
+  display: none;
 }
 
-#popper-container[data-show="true"] {
-    display: block;
-    z-index: 9999;
+#popper-container[data-show='true'] {
+  display: block;
+  z-index: 9999;
 }
 
 .#{$prefix}text-subtitle2 {
-    font-size: 0.875rem;
-    font-weight: 500;
-    line-height: 1.375rem;
-    letter-spacing: 0.00714em;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.375rem;
+  letter-spacing: 0.00714em;
 }
 
 .#{$prefix}dropdown-menu {
+  list-style: none;
+  border-radius: 5px;
+  color: rgb(200, 200, 200);
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+  font-family: var(--gjs-main-font);
+  box-shadow: 0 0 5px var(--gjs-main-dark-color);
+  background-color: var(--gjs-primary-color);
+  > *:not(:last-child) {
+    border-bottom: 1px solid grey;
+  }
+  .#{$prefix}menu-item {
     list-style: none;
-    border-radius: 5px;
-    color: rgb(200, 200, 200);
-    padding: 0;
-    margin: 0;
-    overflow: hidden;
-    font-family: var(--gjs-main-font);
-    box-shadow: 0 0 5px var(--gjs-main-dark-color);
-    background-color: var(--gjs-primary-color);
-    > *:not(:last-child) {
-        border-bottom: 1px solid grey;
+    padding: 8px 20px;
+    cursor: pointer;
+    &:hover {
+      background-color: rgb(40, 40, 40);
     }
-    .#{$prefix}menu-item {
-        list-style: none;
-        padding: 8px 20px;
-        cursor: pointer;
-        &:hover {
-            background-color: rgb(40, 40, 40);
-        }
-    }
-    .#{$prefix}menu-label {
-        font-size: .85rem;
-        margin-left: 5px;
-    }
+  }
+  .#{$prefix}menu-label {
+    font-size: 0.85rem;
+    margin-left: 5px;
+  }
 }
 
 /* Style for tabs */
 .#{$prefix}card__section {
-    padding: 10px;
-    display: flex;
-    justify-content: space-between;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .#{$prefix}tabs {
-    display: flex;
+  display: flex;
 }
 
 .#{$prefix}tab {
-    flex: 1; 
-    padding: 10px 20px;
-    cursor: pointer;
-    position: relative;
-    text-align: center; 
+  flex: 1;
+  padding: 10px 20px;
+  cursor: pointer;
+  position: relative;
+  text-align: center;
 }
 
 .#{$prefix}tab__label {
-    font-size: 14px;
-    line-height: 1.715em;
-    font-weight: 500;
+  font-size: 14px;
+  line-height: 1.715em;
+  font-weight: 500;
 }
 
-.#{$prefix}tab[aria-selected="true"] .#{$prefix}tab__indicator {
-    display: block;
+.#{$prefix}tab[aria-selected='true'] .#{$prefix}tab__indicator {
+  display: block;
 }
 
 .#{$prefix}tab__indicator {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background-color: var(--gjs-quaternary-color);
-    display: none;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--gjs-quaternary-color);
+  display: none;
 }
 
 /* Style for tab panels */
 .#{$prefix}tab-panels {
-    margin: 10px 0px;
-    overflow-y: auto;
-    height: 350px;
+  margin: 10px 0px;
+  overflow-y: auto;
+  height: 350px;
 }
 
 .#{$prefix}tab-panel {
-    display: none;
+  display: none;
 }
 
-.#{$prefix}tab-panel[aria-selected="true"] {
-    display: block;
+.#{$prefix}tab-panel[aria-selected='true'] {
+  display: block;
 }
 
 /* Additional styling */
 .#{$prefix}template-card {
-    border: 1px solid var(--gjs-main-dark-color);
-    border-radius: 5px;
-    position: relative;
-    overflow: hidden;
+  border: 1px solid var(--gjs-main-dark-color);
+  border-radius: 5px;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
 
-    &:hover .#{$prefix}controller {
-        opacity: 1;
-    }
+  .gjs-thumbnail {
+    height: 150px;
+  }
 
-    .#{$prefix}controller {
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        opacity: 0;
-        transition: opacity 0.3s ease;
-        background-color: rgba(44, 44, 44, 0.343);
-    }
-    
-    .#{$prefix}controller button {
-        background-color: #007bff;
-        color: #fff;
-        border: none;
-        padding: 5px 10px;
-        border-radius: 3px;
-        cursor: pointer;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-    }
-    
-    .#{$prefix}controller button:hover {
-        background-color: #0056b3;
-    }
+  &:hover .#{$prefix}controller {
+    opacity: 1;
+  }
+
+  .#{$prefix}controller {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    background-color: rgba(44, 44, 44, 0.343);
+  }
+
+  .#{$prefix}controller button {
+    background-color: var(--gjs-quaternary-color);
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
 }
 
-
 /* Grid styles */
-.#{$prefix}row  {
-    display: flex;
-    flex-wrap: wrap;
-    margin-left: -10px;
-    margin-top: -10px;
+.#{$prefix}row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -10px;
+  margin-top: -10px;
 }
 
 .#{$prefix}xs-12 {
-    flex: 0 0 100%;
-    max-width: 100%;
-    padding-left: 10px;
-    padding-top: 10px;
+  flex: 0 0 100%;
+  max-width: 100%;
+  padding-left: 10px;
+  padding-top: 10px;
 }
 
 /* Small devices (landscape phones, 600px and up) */
 @media (min-width: 600px) {
-    .#{$prefix}sm-4 {
-        flex: 0 0 calc(33.333% - 10px); /* 4 columns with gutter */
-        max-width: calc(33.333% - 10px);
-        padding-left: 10px;
-        padding-top: 10px;
-    }
+  .#{$prefix}sm-4 {
+    flex: 0 0 calc(33.333% - 10px); /* 4 columns with gutter */
+    max-width: calc(33.333% - 10px);
+    padding-left: 10px;
+    padding-top: 10px;
+  }
 }
 
 .#{$prefix}img {
-    max-width: 100%;
-    overflow: hidden; 
-    position: relative;
-    > img {
-        display: block;
-        width: 100%;
-        height: auto;
-    }
+  max-width: 100%;
+  overflow: hidden;
+  position: relative;
+  > img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
 }
 
 .#{$prefix}separator {
-    border-color: var(--gjs-main-dark-color);
-    margin: 0;
+  border-color: var(--gjs-main-dark-color);
+  margin: 0;
 }
 
 .#{$prefix}no-project {
-    margin-top: 15%;
-    text-align: center;
-    font-size: var(--gjs-font-size);
-    i {
-        font-size: 50px;
-        opacity: 0.3;
-        color: var(--gjs-quaternary-color);
-    }
+  margin-top: 15%;
+  text-align: center;
+  font-size: var(--gjs-font-size);
+  i {
+    font-size: 50px;
+    opacity: 0.3;
+    color: var(--gjs-quaternary-color);
+  }
 }
 
-.#{$prefix}btn-delete{
+.#{$prefix}btn-delete {
   background-color: transparent;
   border: none;
   color: inherit;
   cursor: pointer;
   padding: 0;
 }
-

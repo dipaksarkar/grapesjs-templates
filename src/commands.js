@@ -9,9 +9,8 @@ export default (editor, options = {}) => {
 
   const updateBtnEvent = () => {
     $el.find('.gjs-template-card .select').on('click', function () {
-      const type = $(this).attr('data-type')
       const id = $(this).attr('data-template')
-      const template = findTemplate(id, type)
+      const template = findTemplate(id, editor.tab)
 
       if (template?.data) editor.loadProjectData(template.data)
 
@@ -37,6 +36,10 @@ export default (editor, options = {}) => {
 
     const html = mapTemplates(templates, type == PROJECTS)
     $el.find(id).html(templates.length ? html : noItems)
+
+    setTimeout(() => {
+      updateBtnEvent()
+    }, 1)
   }
 
   const findTemplate = (id, type) => {
@@ -68,16 +71,12 @@ export default (editor, options = {}) => {
         $(this).attr('aria-selected', true)
         $el.find('.gjs-tab')
 
-        // switch active tab-panel
-        await renderList(tab)
-
         $el.find('.gjs-tab-panel').attr('aria-selected', false)
         $el.find(`#${tab}`).attr('aria-selected', true)
 
-        updateBtnEvent()
+        // switch active tab-panel
+        await renderList(tab)
       })
-
-      updateBtnEvent()
     }
   })
 
@@ -87,8 +86,8 @@ export default (editor, options = {}) => {
       if (name) {
         const data = editor.getProjectData()
         const thumbnail = await editor.makeThumbnail(editor.getWrapper().getEl(), {
-          quality: 0.95,
-          height: 208,
+          quality: 0.5,
+          height: 1000,
           cacheBust: true,
           style: {
             'background-color': 'white',

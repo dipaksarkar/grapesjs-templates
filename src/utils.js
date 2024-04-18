@@ -61,12 +61,12 @@ export const loader = `
 export const mapTemplates = (templates, removeable = false) => {
   const list = templates.map(
     (item) => `
-      <div class="gjs-xs-12 gjs-sm-4 gjs-templates-${item.id}">
+      <div class="gjs-xs-12 gjs-sm-4">
         <div class="gjs-template-card">
           <div class="gjs-thumbnail gjs-img gjs-img--menu" role="img">
             <img src="${item?.thumbnail || thumbnail}">
             <div class="gjs-controller">
-              <button class="select" data-type="templates" data-template="${item.id}">Select</button>
+              <button class="select" data-template="${item.id}">Select</button>
             </div>
           </div>
           <hr class="gjs-separator gjs-separator--horizontal" aria-orientation="horizontal">

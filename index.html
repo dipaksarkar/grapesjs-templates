@@ -5,7 +5,9 @@
   <meta charset="utf-8">
   <title>Grapesjs Pages</title>
   <link href="https://unpkg.com/grapesjs/dist/css/grapes.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="stylesheets/grapesjs-preset-webpage.min.css">
   <script src="https://unpkg.com/grapesjs"></script>
+  <script src="https://unpkg.com/grapesjs-preset-webpage@1.0.2"></script>
   <style>
     body,
     html {
@@ -34,7 +36,7 @@
         fromElement: true,
         noticeOnUnload: false,
         storageManager: false,
-        plugins: ['grapesjs-pages'],
+        plugins: ['grapesjs-preset-webpage', 'grapesjs-pages'],
         pluginsOpts: {
           'grapesjs-pages': {
             //templates: 'http://localhost:3000/templates',
