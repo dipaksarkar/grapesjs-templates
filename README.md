@@ -1,9 +1,10 @@
 # Grapesjs Pages
+Simple projects and templates manage plugin for GrapesJS
 
-[DEMO](##)
-> **Provide a live demo of your plugin**
-For a better user engagement create a simple live demo by using services like [JSFiddle](https://jsfiddle.net) [CodeSandbox](https://codesandbox.io) [CodePen](https://codepen.io) and link it here in your README (attaching a screenshot/gif will also be a plus).
-To help you in this process here below you will find the necessary HTML/CSS/JS, so it just a matter of copy-pasting on some of those services. After that delete this part and update the link above
+<img src="assets/screenshot.jpg">
+
+[DEMO](https://jsfiddle.net/dipaksarkar/wq1zbLpm/)
+
 
 ### HTML
 ```html
@@ -22,6 +23,12 @@ const editor = grapesjs.init({
   fromElement: true,
   storageManager: false,
   plugins: ['grapesjs-pages'],
+  pluginsOpts: {
+    'grapesjs-pages': { 
+      templates: 'http://localhost:3000/templates',
+      projects: 'http://localhost:3000/projects',
+    }
+  }
 });
 ```
 
@@ -37,22 +44,17 @@ body, html {
 ## Summary
 
 * Plugin name: `grapesjs-pages`
-* Components
-    * `component-id-1`
-    * `component-id-2`
-    * ...
-* Blocks
-    * `block-id-1`
-    * `block-id-2`
-    * ...
-
 
 
 ## Options
 
 | Option | Description | Default |
 |-|-|-
-| `option1` | Description option | `default value` |
+| `templates` | Description option | `default null` |
+| `projects` | Description option | `default null` |
+| `onLoad` | Description option | `default undefined` |
+| `onStore` | Description option | `default undefined` |
+| `onDelete` | Description option | `default undefined` |
 
 
 

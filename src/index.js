@@ -13,7 +13,6 @@ export const makeThumbnail = (el, options = {}) => {
   return new Promise(async (resolve, reject) => {
     try {
       const dataUrl = await domtoimage.toJpeg(el, options)
-      console.log(dataUrl)
       resolve(dataUrl)
     } catch (error) {
       console.error(error)

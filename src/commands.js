@@ -20,7 +20,7 @@ export default (editor, options = {}) => {
     $el.find('.gjs-template-card .remove').on('click', function () {
       const id = $(this).attr('data-template')
       $(this).attr('disabled', true)
-      removeProjects(id).then(() => {
+      removeProjects(id, options).then(() => {
         renderList(editor.tab)
       })
     })
@@ -94,7 +94,7 @@ export default (editor, options = {}) => {
             ...editor.getWrapper().getStyle()
           }
         })
-        return storeProjects({ id: Date.now(), data, name, thumbnail })
+        return storeProjects({ id: Date.now(), data, name, thumbnail }, options)
       }
     }
   })
