@@ -1,7 +1,7 @@
 # Grapesjs Pages
 Simple projects and templates manage plugin for GrapesJS
 
-<img src="assets/screenshot.jpg">
+<img src="assets/preview.gif">
 
 [DEMO](https://jsfiddle.net/dipaksarkar/wq1zbLpm/)
 
