@@ -1,7 +1,16 @@
 # Grapesjs Pages
 Simple projects and templates manage plugin for GrapesJS
 
+[![npm Version](https://badgen.net/npm/v/grapesjs-pages?color=green)](https://www.npmjs.com/package/grapesjs-pages)
+[![npm Downloads](https://badgen.net/npm/dt/grapesjs-pages?color=green)](https://www.npmjs.com/package/grapesjs-pages)
+[![github Stars](https://badgen.net/github/stars/dipaksarkar/grapesjs-pages?color=green)](https://www.npmjs.com/package/grapesjs-pages)
+[![Bundlephobia](https://badgen.net/bundlephobia/minzip/grapesjs-pages?color=green)](https://bundlephobia.com/result?p=grapesjs-pages)
+[![License](https://badgen.net/github/license/dipaksarkar/grapesjs-pages?color=green)](https://github.com/dipaksarkar/grapesjs-pages/blob/master/LICENSE)
+
+
+<p style="text-align: center">
 <img src="assets/preview.gif">
+</p>
 
 [DEMO](https://jsfiddle.net/dipaksarkar/wq1zbLpm/)
 
