@@ -9,7 +9,7 @@ Simple projects and templates manage plugin for GrapesJS
 
 
 <p align="center" width="100%">
-<img src="assets/preview.gif"  style="display: block; margin: auto;">
+<img src="assets/preview.gif"  style="max-width: 100%;display: inline-block;border-radius: 6px;overflow: hidden;">
 </p>
 
 [DEMO](https://jsfiddle.net/dipaksarkar/wq1zbLpm/)
