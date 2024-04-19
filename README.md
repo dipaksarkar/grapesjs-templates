@@ -8,8 +8,8 @@ Simple projects and templates manage plugin for GrapesJS
 [![License](https://badgen.net/github/license/dipaksarkar/grapesjs-pages?color=green)](https://github.com/dipaksarkar/grapesjs-pages/blob/master/LICENSE)
 
 
-<p style="text-align: center; width: 100%">
-<img src="assets/preview.gif">
+<p align="center" width="100%">
+<img src="assets/preview.gif"  style="display: block; margin: auto;">
 </p>
 
 [DEMO](https://jsfiddle.net/dipaksarkar/wq1zbLpm/)
