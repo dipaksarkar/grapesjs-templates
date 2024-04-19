@@ -7,3 +7,5 @@ node_modules
 public
 src
 !src/styles/main.scss
+assets
+server

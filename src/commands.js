@@ -1,4 +1,4 @@
-import { modalContent, noItems, loader, mapTemplates, fetchTemplates, storeProjects, removeProjects, PROJECTS, TEMPLATES } from './utils'
+import { mapTemplates, fetchTemplates, storeProjects, removeProjects, PROJECTS, TEMPLATES } from './utils'
 
 const el = document.createElement('div')
 
@@ -6,6 +6,45 @@ export default (editor, options = {}) => {
   const { Commands, Modal, $ } = editor
   const $el = $(el)
   editor.tab = TEMPLATES
+
+  const modalContent = `
+    <div class="manage-templates">
+      <div class="gjs-px-md">
+        <div class="gjs-tabs" role="tablist">
+          <div class="gjs-tab" data-tab="${PROJECTS}" role="tab" aria-selected="false">
+            <div class="gjs-tab__label">${editor.I18n.t('grapesjs-pages.projects')}</div>
+            <div class="gjs-tab__indicator absolute-bottom"></div>
+          </div>
+          <div class="gjs-tab" data-tab="${TEMPLATES}" role="tab" aria-selected="true">
+            <div class="gjs-tab__label">${editor.I18n.t('grapesjs-pages.templates')}</div>
+            <div class="gjs-tab__indicator absolute-bottom"></div>
+          </div>
+        </div>
+        <hr class="gjs-separator gjs-separator--horizontal gjs-separator--dark" aria-orientation="horizontal">
+      </div>
+      <div class="gjs-tab-panels">
+        <div id="${PROJECTS}" aria-selected="false" class="gjs-tab-panel" role="tabpanel"></div>
+        <div id="${TEMPLATES}" aria-selected="true" class="gjs-tab-panel" role="tabpanel"></div>
+      </div>
+    </div>
+  `
+
+  const noItems = `
+    <div class="gjs-no-project">
+      <i class="fa fa-newspaper-o"></i>
+      <div class="gjs-message">
+        ${editor.I18n.t('grapesjs-pages.no-records')}
+      </div>
+    </div>
+  `
+
+  const loader = `
+    <div class="gjs-no-project">
+      <div class="gjs-message">
+        ${editor.I18n.t('grapesjs-pages.loading')}
+      </div>
+    </div>
+  `
 
   const updateBtnEvent = () => {
     $el.find('.gjs-template-card .select').on('click', function () {
@@ -34,7 +73,7 @@ export default (editor, options = {}) => {
 
     editor[type] = templates
 
-    const html = mapTemplates(templates, type == PROJECTS)
+    const html = mapTemplates(editor, templates, type == PROJECTS)
     $el.find(id).html(templates.length ? html : noItems)
 
     setTimeout(() => {
@@ -52,7 +91,7 @@ export default (editor, options = {}) => {
 
   Commands.add('open-templates', {
     async run(editor, sender) {
-      Modal.setTitle('Templates')
+      Modal.setTitle(editor.I18n.t('grapesjs-pages.templates'))
       Modal.setContent(el)
       Modal.open()
 
@@ -82,7 +121,7 @@ export default (editor, options = {}) => {
 
   Commands.add('save-templates', {
     async run(editor) {
-      const name = prompt('Enter template name:')
+      const name = prompt(editor.I18n.t('grapesjs-pages.enter-template-name'))
       if (name) {
         const data = editor.getProjectData()
         const thumbnail = await editor.makeThumbnail(editor.getWrapper().getEl(), {

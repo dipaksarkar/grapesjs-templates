@@ -31,6 +31,14 @@ export default (editor, opts = {}) => {
     ...opts
   }
 
+  // Load i18n files
+  if (editor.I18n) {
+    editor.I18n.addMessages({
+      en,
+      ...options.i18n
+    })
+  }
+
   editor.templates = templates
   editor.makeThumbnail = makeThumbnail
   editor.createPopper = createPopper
@@ -46,11 +54,4 @@ export default (editor, opts = {}) => {
 
   // Add panels
   loadPanels(editor, options)
-
-  // Load i18n files
-  editor.I18n &&
-    editor.I18n.addMessages({
-      en,
-      ...options.i18n
-    })
 }

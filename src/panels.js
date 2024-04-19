@@ -1,13 +1,24 @@
-import { dropdownMenu } from './utils'
-
 export default (editor, opts = {}) => {
   const { Panels, $, createPopper } = editor
+
+  const dropdownMenu = `
+    <ul class="gjs-dropdown-menu">
+      <li data-command="save-templates" class="gjs-menu-item">
+        <i class="fa fa-save"></i>
+        <span class="gjs-menu-label">${editor.I18n.t('grapesjs-pages.save-template')}</span>
+      </li>
+      <li data-command="open-templates" class="gjs-menu-item">
+        <i class="fa fa-folder-o"></i>
+        <span class="gjs-menu-label">${editor.I18n.t('grapesjs-pages.load-template')}</span>
+      </li>
+    </ul>
+  `
 
   Panels.addButton('options', {
     id: 'open-templates',
     className: 'dropdown fa fa-cog',
     attributes: {
-      title: 'Template settings',
+      title: editor.I18n.t('grapesjs-pages.template-settings'),
       'data-dropdown': dropdownMenu,
       'data-offset': '-55,7'
     },
