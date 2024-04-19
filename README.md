@@ -52,19 +52,58 @@ body, html {
 
 ## Summary
 
-* Plugin name: `grapesjs-pages`
-
+Plugin name: `grapesjs-pages`
 
 ## Options
 
-| Option | Description | Default |
-|-|-|-
-| `templates` | Description option | `default null` |
-| `projects` | Description option | `default null` |
-| `onLoad` | Description option | `default undefined` |
-| `onStore` | Description option | `default undefined` |
-| `onDelete` | Description option | `default undefined` |
+| Option      | Description                            | Default       |
+|-------------|----------------------------------------|---------------|
+| `templates` | API endpoint for templates.             | `null`        |
+| `projects`  | API endpoint for projects.              | `null`        |
+| `onLoad`    | Method to load projects or templates.  | `undefined`   |
+| `onStore`   | Method to store data.                   | `undefined`   |
+| `onDelete`  | Method to delete a project.            | `undefined`   |
 
+Let me know if you need further assistance!
+
+## Option Details
+
+- **`templates`:** 
+  - Type: `String` or `null`
+  - Description: API endpoint for templates.
+  - Default: `null`
+
+- **`projects`:**
+  - Type: `String` or `null`
+  - Description: API endpoint for projects.
+  - Default: `null`
+
+- **`onLoad`:**
+  - Type: `Function`
+  - Description: Method to load projects or templates.
+  - Default: `undefined`
+  - Parameters:
+    - `type` (String): Type of data to load (`templates` or `projects`).
+  - Returns:
+    - `Array` or `null`: Array of loaded data or null if not found.
+
+- **`onStore`:**
+  - Type: `Function`
+  - Description: Method to store data.
+  - Default: `undefined`
+  - Parameters:
+    - `payload` (Object): Data to be stored.
+  - Returns:
+    - `Boolean`: `true` if stored successfully, `false` otherwise.
+
+- **`onDelete`:**
+  - Type: `Function`
+  - Description: Method to delete a project.
+  - Default: `undefined`
+  - Parameters:
+    - `id` (String): ID of the project to delete.
+  - Returns:
+    - `Boolean`: `true` if deletion is successful, `false` otherwise.
 
 
 ## Download
