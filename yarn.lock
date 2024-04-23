@@ -742,7 +742,7 @@
   dependencies:
     "@babel/helper-plugin-utils" "^7.24.0"
 
-"@babel/plugin-transform-runtime@^7.19.6":
+"@babel/plugin-transform-runtime@^7.19.6", "@babel/plugin-transform-runtime@^7.24.3":
   version "7.24.3"
   resolved "https://registry.yarnpkg.com/@babel/plugin-transform-runtime/-/plugin-transform-runtime-7.24.3.tgz#dc58ad4a31810a890550365cc922e1ff5acb5d7f"
   integrity sha512-J0BuRPNlNqlMTRJ72eVptpt9VcInbxO6iP3jaxr+1NPhC0UkKL+6oeX6VXMEYdADnuqmMmsBspt4d5w8Y/TCbQ==
