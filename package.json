@@ -1,6 +1,6 @@
 {
   "name": "grapesjs-templates",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Grapesjs templates",
   "main": "dist/index.js",
   "repository": {
