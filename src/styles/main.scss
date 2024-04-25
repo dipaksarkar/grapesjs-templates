@@ -10,6 +10,19 @@ $prefix: 'gjs-' !default;
   z-index: 9999;
 }
 
+.#{$prefix}dropdown {
+  .#{$prefix}dropdown-menu {
+    display: none;
+  }
+}
+
+.#{$prefix}pn-btn {
+  svg {
+    display: block;
+    max-width: 20px;
+  }
+}
+
 .#{$prefix}text-subtitle2 {
   font-size: 0.875rem;
   font-weight: 500;
