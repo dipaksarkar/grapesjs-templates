@@ -2,7 +2,7 @@ export default [
   {
     id: 1,
     name: 'Landing Page',
-    thumbnail: 'https://raw.githubusercontent.com/dipaksarkar/grapesjs-pages/main/assets/1.png',
+    thumbnail: 'https://raw.githubusercontent.com/dipaksarkar/grapesjs-templates/main/assets/1.png',
     data: {
       assets: [
         {
@@ -2452,7 +2452,7 @@ export default [
   {
     id: 2,
     name: 'Wireframe',
-    thumbnail: 'https://raw.githubusercontent.com/dipaksarkar/grapesjs-pages/main/assets/2.png',
+    thumbnail: 'https://raw.githubusercontent.com/dipaksarkar/grapesjs-templates/main/assets/2.png',
     data: {
       assets: [],
       styles: [

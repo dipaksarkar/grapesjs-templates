@@ -4,7 +4,7 @@ export const PROJECTS = 'projects'
 
 export const TEMPLATES = 'templates'
 
-export const thumbnail = 'https://raw.githubusercontent.com/dipaksarkar/grapesjs-pages/main/assets/placeholder.png'
+export const thumbnail = 'https://raw.githubusercontent.com/dipaksarkar/grapesjs-templates/main/assets/placeholder.png'
 
 export const mapTemplates = (editor, templates, removeable = false) => {
   const list = templates.map(
@@ -14,7 +14,7 @@ export const mapTemplates = (editor, templates, removeable = false) => {
           <div class="gjs-thumbnail gjs-img gjs-img--menu" role="img">
             <img src="${item?.thumbnail || thumbnail}">
             <div class="gjs-controller">
-              <button class="select" data-template="${item.id}">${editor.I18n.t('grapesjs-pages.select')}</button>
+              <button class="select" data-template="${item.id}">${editor.I18n.t('grapesjs-templates.select')}</button>
             </div>
           </div>
           <hr class="gjs-separator gjs-separator--horizontal" aria-orientation="horizontal">

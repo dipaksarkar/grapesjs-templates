@@ -1,5 +1,5 @@
 export default {
-  'grapesjs-pages': {
+  'grapesjs-templates': {
     projects: 'My projects',
     templates: 'Templates',
     'save-template': 'Save template',

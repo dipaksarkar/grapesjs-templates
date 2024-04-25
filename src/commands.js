@@ -12,11 +12,11 @@ export default (editor, options = {}) => {
       <div class="gjs-px-md">
         <div class="gjs-tabs" role="tablist">
           <div class="gjs-tab" data-tab="${PROJECTS}" role="tab" aria-selected="false">
-            <div class="gjs-tab__label">${editor.I18n.t('grapesjs-pages.projects')}</div>
+            <div class="gjs-tab__label">${editor.I18n.t('grapesjs-templates.projects')}</div>
             <div class="gjs-tab__indicator absolute-bottom"></div>
           </div>
           <div class="gjs-tab" data-tab="${TEMPLATES}" role="tab" aria-selected="true">
-            <div class="gjs-tab__label">${editor.I18n.t('grapesjs-pages.templates')}</div>
+            <div class="gjs-tab__label">${editor.I18n.t('grapesjs-templates.templates')}</div>
             <div class="gjs-tab__indicator absolute-bottom"></div>
           </div>
         </div>
@@ -33,7 +33,7 @@ export default (editor, options = {}) => {
     <div class="gjs-no-project">
       <i class="fa fa-newspaper-o"></i>
       <div class="gjs-message">
-        ${editor.I18n.t('grapesjs-pages.no-records')}
+        ${editor.I18n.t('grapesjs-templates.no-records')}
       </div>
     </div>
   `
@@ -41,7 +41,7 @@ export default (editor, options = {}) => {
   const loader = `
     <div class="gjs-no-project">
       <div class="gjs-message">
-        ${editor.I18n.t('grapesjs-pages.loading')}
+        ${editor.I18n.t('grapesjs-templates.loading')}
       </div>
     </div>
   `
@@ -91,7 +91,7 @@ export default (editor, options = {}) => {
 
   Commands.add('open-templates', {
     async run(editor, sender) {
-      Modal.setTitle(editor.I18n.t('grapesjs-pages.templates'))
+      Modal.setTitle(editor.I18n.t('grapesjs-templates.templates'))
       Modal.setContent(el)
       Modal.open()
 
@@ -121,7 +121,7 @@ export default (editor, options = {}) => {
 
   Commands.add('save-templates', {
     async run(editor) {
-      const name = prompt(editor.I18n.t('grapesjs-pages.enter-template-name'))
+      const name = prompt(editor.I18n.t('grapesjs-templates.enter-template-name'))
       if (name) {
         const data = editor.getProjectData()
         const thumbnail = await editor.makeThumbnail(editor.getWrapper().getEl(), {
