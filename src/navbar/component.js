@@ -10,6 +10,14 @@ export default (editor, opts = {}) => {
   const idNavMenuLink = `${id}-nav-menu-link`
   const idBurgerMenu = `${id}-burger-menu`
   const idBurgerMenuLine = `${id}-burger-menu-line`
+  const sticky = `sticky`
+
+  editor.on('trait:value', ({ trait, component, value }) => {
+    if (trait.id === sticky) {
+      const sticky = value || false
+      component.addAttributes({ sticky })
+    }
+  })
 
   Components.addType(id, {
     model: {
@@ -18,6 +26,14 @@ export default (editor, opts = {}) => {
         name: label,
         attributes: { class: navbarPfx },
         components: { type: idContainer },
+        traits: [
+          {
+            type: 'checkbox',
+            name: 'sticky',
+            label: 'Sticky',
+            attributes: { id: sticky }
+          }
+        ],
         styles:
           navbarStyle ||
           `
@@ -26,6 +42,14 @@ export default (editor, opts = {}) => {
             color: #ddd;
             min-height: 50px;
             width: 100%;
+            transition: top 0.3s ease-in-out;
+          }
+
+          .${navbarPfx}.${sticky} {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 999
           }
 
           .${navbarPfx}-container {
@@ -48,7 +72,7 @@ export default (editor, opts = {}) => {
           .${navbarPfx}-brand {
             vertical-align: middle;
             display: inline-block;
-            padding: 10px 0px 6px 0px;
+            padding: 10px 0px;
             color: inherit;
             text-decoration: none;
           }
@@ -77,6 +101,10 @@ export default (editor, opts = {}) => {
             cursor: pointer;
           }
 
+          .${navbarPfx}-logo {
+            display: block;
+          }
+
           .${navbarPfx}-burger-line {
             padding: 1px;
             background-color: white;
@@ -101,7 +129,23 @@ export default (editor, opts = {}) => {
               display: block;
             }
           }
-        `
+        `,
+        script: function () {
+          const header = this // 'this' refers to the component element
+
+          const handleScroll = () => {
+            const isSticky = header.getAttribute('sticky') === 'true'
+            const headerHeight = header.offsetHeight
+
+            if (isSticky && window.pageYOffset > headerHeight) {
+              header.classList.add('sticky')
+            } else {
+              header.classList.remove('sticky')
+            }
+          }
+
+          window.addEventListener('scroll', handleScroll)
+        }
       }
     }
   })
