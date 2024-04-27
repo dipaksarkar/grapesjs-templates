@@ -10,10 +10,8 @@ export const navbar = {
   classPrefix: 'navbar'
 }
 
-export const loadNavbarBlock = (editor, opts = {}) => {
-  loadBlock(editor, { ...opts, navbar })
-}
+export default (editor, options = {}) => {
+  loadComponent(editor, { ...options, navbar })
 
-export const loadNavbarComponent = (editor, opts = {}) => {
-  loadComponent(editor, { ...opts, navbar })
+  loadBlock(editor, { ...options, navbar })
 }

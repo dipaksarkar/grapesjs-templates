@@ -1,7 +1,7 @@
-export default (editor, opts = {}) => {
+export default (editor, options = {}) => {
   const { Blocks } = editor
 
-  const { navbar } = opts
+  const { navbar } = options
   const { block, label, id } = navbar
 
   Blocks.add(id, {

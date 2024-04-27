@@ -1,11 +1,12 @@
 import domtoimage from 'dom-to-image'
 import { createPopper } from '@popperjs/core'
-import loadComponents from './components'
+import loadNavBar from './navbar'
 import loadCommands from './commands'
-import loadBlocks from './blocks'
 import loadPanels from './panels'
 import en from './locale/en'
 import templates from './templates'
+import loadShortCode from './shortcode'
+import loadShortCodes from './shortcodes'
 
 import './styles/main.scss'
 
@@ -44,14 +45,17 @@ export default (editor, opts = {}) => {
   editor.createPopper = createPopper
 
   // Add components
-  loadComponents(editor, options)
+  loadNavBar(editor, options)
 
   // Add commands
   loadCommands(editor, options)
 
-  // Add blocks
-  loadBlocks(editor, options)
-
   // Add panels
   loadPanels(editor, options)
+
+  // Add Short Code
+  loadShortCode(editor, options)
+
+  // Load Short Codes
+  loadShortCodes(editor, options)
 }

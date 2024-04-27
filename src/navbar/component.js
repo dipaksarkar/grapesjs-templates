@@ -1,7 +1,7 @@
-export default (editor, opts = {}) => {
+export default (editor, options = {}) => {
   const { Components } = editor
 
-  const { navbarStyle, navbar } = opts
+  const { navbarStyle, navbar } = options
   const { classPrefix, label, id } = navbar
 
   const navbarPfx = classPrefix
