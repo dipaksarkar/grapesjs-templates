@@ -160,7 +160,7 @@
       <section class="am-sect">
         <div class="container-width">
           <div class="am-container">
-            <img src="./img/phone-app.png" class="img-phone" />
+            <img src="https://grapesjs.com/img/phone-app.png" class="img-phone" />
             <div class="am-content">
               <div class="am-pre">ASSET MANAGER
               </div>
@@ -248,7 +248,7 @@
             <div class="badge">
               <div class="badge-header">
               </div>
-              <img src="img/team1.jpg" class="badge-avatar" />
+              <img src="https://grapesjs.com/img/team1.jpg" class="badge-avatar" />
               <div class="badge-body">
                 <div class="badge-name">Adam Smith
                 </div>
@@ -267,7 +267,7 @@
             <div class="badge">
               <div class="badge-header">
               </div>
-              <img src="img/team2.jpg" class="badge-avatar" />
+              <img src="https://grapesjs.com/img/team2.jpg" class="badge-avatar" />
               <div class="badge-body">
                 <div class="badge-name">John Black
                 </div>
@@ -286,7 +286,7 @@
             <div class="badge">
               <div class="badge-header">
               </div>
-              <img src="img/team3.jpg" class="badge-avatar" />
+              <img src="https://grapesjs.com/img/team3.jpg" class="badge-avatar" />
               <div class="badge-body">
                 <div class="badge-name">Jessica White
                 </div>
@@ -1112,7 +1112,7 @@
   <script type="text/javascript">
     // Wait for the plugin to be injected by the dev server
     setTimeout(() => {
-      window.editor = grapesjs.init({
+      var editor = grapesjs.init({
         height: '100%',
         container: '#gjs',
         showOffsets: true,
@@ -1182,6 +1182,44 @@
           }
         },
       });
+
+      window.editor = editor
+
+
+      var pn = editor.Panels;
+
+      editor.on('load', () => {
+        var $ = grapesjs.$;
+        // Load and show settings and style manager
+        var openTmBtn = pn.getButton('views', 'open-tm');
+        openTmBtn && openTmBtn.set('active', 1);
+        var openSm = pn.getButton('views', 'open-sm');
+        openSm && openSm.set('active', 1);
+
+        // Remove trait view
+        pn.removeButton('views', 'open-tm');
+
+        // Add Settings Sector
+        var traitsSector = $('<div class="gjs-sm-sector no-select">' +
+          '<div class="gjs-sm-sector-title"><span class="icon-settings fa fa-cog"></span> <span class="gjs-sm-sector-label">Settings</span></div>' +
+          '<div class="gjs-sm-properties" style="display: none;"></div></div>');
+        var traitsProps = traitsSector.find('.gjs-sm-properties');
+        traitsProps.append($('.gjs-traits-cs'));
+        $('.gjs-sm-sectors').before(traitsSector);
+        traitsSector.find('.gjs-sm-sector-title').on('click', function () {
+          var traitStyle = traitsProps.get(0).style;
+          var hidden = traitStyle.display == 'none';
+          if (hidden) {
+            traitStyle.display = 'block';
+          } else {
+            traitStyle.display = 'none';
+          }
+        });
+
+        // Open block manager
+        var openBlocksBtn = editor.Panels.getButton('views', 'open-blocks');
+        openBlocksBtn && openBlocksBtn.set('active', 1);
+      })
     }, 100);
   </script>
 </body>
