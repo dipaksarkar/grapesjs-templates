@@ -6,6 +6,10 @@ export const TEMPLATES = 'templates'
 
 export const thumbnail = 'https://raw.githubusercontent.com/dipaksarkar/grapesjs-templates/main/assets/placeholder.png'
 
+export const isComponent = (el, type) => {
+  return el && ((el.dataset && el.dataset.type === type) || (el.classList && el.classList.contains(type)))
+}
+
 export const mapTemplates = (editor, templates, removeable = false) => {
   const list = templates.map(
     (item) => `
