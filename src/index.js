@@ -28,6 +28,7 @@ export default (editor, opts = {}) => {
       i18n: {},
       templates: null,
       projects: null,
+      shortCodes: true,
       announcementsTraits: [],
       blogsTraits: [],
       productsTraits: [],
@@ -65,5 +66,7 @@ export default (editor, opts = {}) => {
   loadShortCode(editor, options)
 
   // Load Short Codes
-  loadShortCodes(editor, options)
+  if (options?.shortCodes) {
+    loadShortCodes(editor, options)
+  }
 }

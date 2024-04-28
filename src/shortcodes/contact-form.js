@@ -30,7 +30,7 @@ export default (editor, options = {}) => {
             name: 'form',
             label: 'From',
             changeProp: 1,
-            options: contactForms
+            options: [{ id: '', label: 'Select a Form' }, ...contactForms]
           },
           ...contactFormsTraits,
           ...defaultType.model.prototype.defaults.traits
