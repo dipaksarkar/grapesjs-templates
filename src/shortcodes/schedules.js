@@ -1,10 +1,10 @@
 import { isComponent } from '../utils'
 
 export default (editor, options = {}) => {
-  const { contactForms, contactFormsTraits } = options
+  const { schedulesTraits } = options
   const { Blocks, Components } = editor
-  const type = 'contact-form'
-  const componentName = 'Contact Form'
+  const type = 'schedules'
+  const componentName = 'Schedules'
   const defaultType = Components.getType('shortcode')
 
   // Define custom component properties and traits
@@ -24,17 +24,7 @@ export default (editor, options = {}) => {
           class: type
         },
         content: `[${type}]`,
-        traits: [
-          {
-            type: 'select',
-            name: 'form',
-            label: 'From',
-            changeProp: 1,
-            options: contactForms
-          },
-          ...contactFormsTraits,
-          ...defaultType.model.prototype.defaults.traits
-        ]
+        traits: [...schedulesTraits, ...defaultType.model.prototype.defaults.traits]
       },
       handlePropChange() {
         const attributes = this.getShortCodeProps().join(' ')
@@ -51,11 +41,11 @@ export default (editor, options = {}) => {
     view: defaultType.view.prototype
   })
 
-  // Create a block for the contact form component
+  // Create a block for the Schedules component
   Blocks.add(`${type}-block`, {
     label: componentName,
     media:
-      '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M448 75.2v361.7c0 24.3-19 43.2-43.2 43.2H43.2C19.3 480 0 461.4 0 436.8V75.2C0 51.1 18.8 32 43.2 32h361.7c24 0 43.1 18.8 43.1 43.2zm-37.3 361.6V75.2c0-3-2.6-5.8-5.8-5.8h-9.3L285.3 144 224 94.1 162.8 144 52.5 69.3h-9.3c-3.2 0-5.8 2.8-5.8 5.8v361.7c0 3 2.6 5.8 5.8 5.8h361.7c3.2 .1 5.8-2.7 5.8-5.8zM150.2 186v37H76.7v-37h73.5zm0 74.4v37.3H76.7v-37.3h73.5zm11.1-147.3l54-43.7H96.8l64.5 43.7zm210 72.9v37h-196v-37h196zm0 74.4v37.3h-196v-37.3h196zm-84.6-147.3l64.5-43.7H232.8l53.9 43.7zM371.3 335v37.3h-99.4V335h99.4z"/></svg>',
+      '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M128 0c17.7 0 32 14.3 32 32V64H288V32c0-17.7 14.3-32 32-32s32 14.3 32 32V64h48c26.5 0 48 21.5 48 48v48H0V112C0 85.5 21.5 64 48 64H96V32c0-17.7 14.3-32 32-32zM0 192H448V464c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V192zm64 80v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V272c0-8.8-7.2-16-16-16H80c-8.8 0-16 7.2-16 16zm128 0v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V272c0-8.8-7.2-16-16-16H208c-8.8 0-16 7.2-16 16zm144-16c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V272c0-8.8-7.2-16-16-16H336zM64 400v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V400c0-8.8-7.2-16-16-16H80c-8.8 0-16 7.2-16 16zm144-16c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V400c0-8.8-7.2-16-16-16H208zm112 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V400c0-8.8-7.2-16-16-16H336c-8.8 0-16 7.2-16 16z"/></svg>',
     content: { type: type },
     category: 'Short Codes'
   })

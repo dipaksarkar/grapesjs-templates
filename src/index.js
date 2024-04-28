@@ -27,7 +27,15 @@ export default (editor, opts = {}) => {
     ...{
       i18n: {},
       templates: null,
-      projects: null
+      projects: null,
+      announcementsTraits: [],
+      blogsTraits: [],
+      productsTraits: [],
+      plansTratis: [],
+      schedulesTraits: [],
+      openingTimesTraits: [],
+      contactForms: [],
+      contactFormsTraits: []
     },
     ...opts
   }

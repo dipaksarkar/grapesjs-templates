@@ -4,6 +4,7 @@ export default (editor, options = {}) => {
   const { onLoadShortCode } = options
   const { Components } = editor
   const type = 'shortcode'
+  const defaultType = Components.getType('default')
 
   // Define custom component properties and traits
   Components.addType(type, {
@@ -24,7 +25,8 @@ export default (editor, options = {}) => {
         draggable: true,
         droppable: false,
         editable: false, // Content is not editable
-        content: `[${type}]`
+        content: `[${type}]`,
+        traits: defaultType.model.prototype.defaults.traits
       },
       init() {
         this.handlePropChange()

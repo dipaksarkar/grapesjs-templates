@@ -1,10 +1,10 @@
-import { isComponent } from '../utils'
+import { defaultTraits, isComponent } from '../utils'
 
 export default (editor, options = {}) => {
-  const { contactForms, contactFormsTraits } = options
+  const { blogsTraits } = options
   const { Blocks, Components } = editor
-  const type = 'contact-form'
-  const componentName = 'Contact Form'
+  const type = 'blogs'
+  const componentName = 'Blogs'
   const defaultType = Components.getType('shortcode')
 
   // Define custom component properties and traits
@@ -24,17 +24,7 @@ export default (editor, options = {}) => {
           class: type
         },
         content: `[${type}]`,
-        traits: [
-          {
-            type: 'select',
-            name: 'form',
-            label: 'From',
-            changeProp: 1,
-            options: contactForms
-          },
-          ...contactFormsTraits,
-          ...defaultType.model.prototype.defaults.traits
-        ]
+        traits: [...defaultTraits, ...blogsTraits, ...defaultType.model.prototype.defaults.traits]
       },
       handlePropChange() {
         const attributes = this.getShortCodeProps().join(' ')
@@ -51,11 +41,11 @@ export default (editor, options = {}) => {
     view: defaultType.view.prototype
   })
 
-  // Create a block for the contact form component
+  // Create a block for the Blogs component
   Blocks.add(`${type}-block`, {
     label: componentName,
     media:
-      '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M448 75.2v361.7c0 24.3-19 43.2-43.2 43.2H43.2C19.3 480 0 461.4 0 436.8V75.2C0 51.1 18.8 32 43.2 32h361.7c24 0 43.1 18.8 43.1 43.2zm-37.3 361.6V75.2c0-3-2.6-5.8-5.8-5.8h-9.3L285.3 144 224 94.1 162.8 144 52.5 69.3h-9.3c-3.2 0-5.8 2.8-5.8 5.8v361.7c0 3 2.6 5.8 5.8 5.8h361.7c3.2 .1 5.8-2.7 5.8-5.8zM150.2 186v37H76.7v-37h73.5zm0 74.4v37.3H76.7v-37.3h73.5zm11.1-147.3l54-43.7H96.8l64.5 43.7zm210 72.9v37h-196v-37h196zm0 74.4v37.3h-196v-37.3h196zm-84.6-147.3l64.5-43.7H232.8l53.9 43.7zM371.3 335v37.3h-99.4V335h99.4z"/></svg>',
+      '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zM96 136c0-13.3 10.7-24 24-24c137 0 248 111 248 248c0 13.3-10.7 24-24 24s-24-10.7-24-24c0-110.5-89.5-200-200-200c-13.3 0-24-10.7-24-24zm0 96c0-13.3 10.7-24 24-24c83.9 0 152 68.1 152 152c0 13.3-10.7 24-24 24s-24-10.7-24-24c0-57.4-46.6-104-104-104c-13.3 0-24-10.7-24-24zm0 120a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z"/></svg>',
     content: { type: type },
     category: 'Short Codes'
   })
