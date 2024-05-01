@@ -24,7 +24,17 @@ export default (editor, options = {}) => {
           class: type
         },
         content: `[${type}]`,
-        traits: [...calendarTraits, ...defaultType.model.prototype.defaults.traits]
+        traits: [
+          {
+            type: 'url',
+            name: 'endpoint',
+            label: 'Endpoint',
+            placeholder: 'eg. https://example.com/calendar',
+            changeProp: 1
+          },
+          ...calendarTraits,
+          ...defaultType.model.prototype.defaults.traits
+        ]
       },
       handlePropChange() {
         const attributes = this.getShortCodeProps().join(' ')
