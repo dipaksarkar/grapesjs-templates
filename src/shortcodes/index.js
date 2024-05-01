@@ -4,7 +4,7 @@ import loadBlogs from './blogs'
 import loadOpeningTimes from './opening-times'
 import loadPlans from './plans'
 import loadProducts from './products'
-import loadSchedules from './schedules'
+import loadCalendar from './calendar'
 
 export default (editor, options = {}) => {
   loadContactForm(editor, options)
@@ -13,5 +13,5 @@ export default (editor, options = {}) => {
   loadPlans(editor, options)
   loadAnnouncements(editor, options)
   loadOpeningTimes(editor, options)
-  loadSchedules(editor, options)
+  loadCalendar(editor, options)
 }

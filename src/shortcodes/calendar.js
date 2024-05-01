@@ -1,10 +1,10 @@
 import { isComponent } from '../utils'
 
 export default (editor, options = {}) => {
-  const { schedulesTraits } = options
+  const { calendarTraits } = options
   const { Blocks, Components } = editor
-  const type = 'schedules'
-  const componentName = 'Schedules'
+  const type = 'calendar'
+  const componentName = 'Calendar'
   const defaultType = Components.getType('shortcode')
 
   // Define custom component properties and traits
@@ -24,7 +24,7 @@ export default (editor, options = {}) => {
           class: type
         },
         content: `[${type}]`,
-        traits: [...schedulesTraits, ...defaultType.model.prototype.defaults.traits]
+        traits: [...calendarTraits, ...defaultType.model.prototype.defaults.traits]
       },
       handlePropChange() {
         const attributes = this.getShortCodeProps().join(' ')
@@ -41,7 +41,7 @@ export default (editor, options = {}) => {
     view: defaultType.view.prototype
   })
 
-  // Create a block for the Schedules component
+  // Create a block for the Calendar component
   Blocks.add(`${type}-block`, {
     label: componentName,
     media:

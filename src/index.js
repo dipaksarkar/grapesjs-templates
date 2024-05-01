@@ -33,7 +33,7 @@ export default (editor, opts = {}) => {
       blogsTraits: [],
       productsTraits: [],
       plansTratis: [],
-      schedulesTraits: [],
+      calendarTraits: [],
       openingTimesTraits: [],
       contactForms: [],
       contactFormsTraits: []
