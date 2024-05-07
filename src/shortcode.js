@@ -62,7 +62,7 @@ export default (editor, options = {}) => {
       render() {
         const shortcode = this.model.get('shortcode')
         if (typeof onLoadShortCode === 'function') {
-          onLoadShortCode(this)
+          onLoadShortCode(this.el, shortcode)
         } else {
           this.el.innerHTML = shortcode
         }
