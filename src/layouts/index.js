@@ -12,12 +12,14 @@ export const layout = {
 }
 
 export default (editor, options = {}) => {
-  const opts = { layout, ...options }
+  const { Components } = editor
+
+  const opts = { layout, ...options, defaultModel: Components.getType('default').model }
 
   traits(editor, opts)
-  container(editor, opts)
-  column(editor, opts)
-  row(editor, opts)
+  container(Components, opts)
+  column(Components, opts)
+  row(Components, opts)
 
   blocks(editor, opts)
 }

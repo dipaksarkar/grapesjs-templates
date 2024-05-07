@@ -180,7 +180,7 @@ export const containerTraits = [
   {
     type: 'select-class',
     name: 'bs-width',
-    label: 'Size',
+    label: 'Width',
     changeProp: 1,
     options: [
       { id: 'container', label: 'Fixed' },
