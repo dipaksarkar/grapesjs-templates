@@ -21,11 +21,9 @@ export default (cm, options = {}) => {
         attributes: { class: type },
         traits: containerTraits,
         components: `<p style="margin: 15px 0px">Container</p>`,
-        styles: `
-          .${type}, [class^="${type}-"] {
-            padding: 15px;
-          }
-        `
+        style: {
+          padding: '15px'
+        }
       }
     }
   })
