@@ -48,7 +48,13 @@
         showOffsets: true,
         fromElement: true,
         noticeOnUnload: false,
-        storageManager: true,
+        storageManager: false,
+        selectorManager: {
+          componentFirst: true,
+        },
+        canvas: {
+          styles: ['https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap-grid.min.css']
+        },
         plugins: [
           'gjs-blocks-basic',
           'grapesjs-plugin-forms',
@@ -66,7 +72,7 @@
           'grapesjs-templates'
         ],
         pluginsOpts: {
-          'gjs-blocks-basic': { flexGrid: true },
+          'gjs-blocks-basic': { flexGrid: true, blocks: ['text', 'link', 'image', 'video', 'map'] },
           'grapesjs-tui-image-editor': {
             script: [
               // 'https://cdnjs.cloudflare.com/ajax/libs/fabric.js/1.6.7/fabric.min.js',
