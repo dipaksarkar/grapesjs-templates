@@ -7,6 +7,7 @@ import en from './locale/en'
 import templates from './templates'
 import loadShortCode from './shortcode'
 import loadShortCodes from './shortcodes'
+import loadLayouts from './layouts'
 
 import './styles/main.scss'
 
@@ -64,6 +65,8 @@ export default (editor, opts = {}) => {
 
   // Add Short Code
   loadShortCode(editor, options)
+
+  loadLayouts(editor, options)
 
   // Load Short Codes
   if (options?.shortCodes) {
